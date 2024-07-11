@@ -91,12 +91,31 @@ public class CUI {
 		// Check available quantity
 		ReserveRoomForm reserveRoomForm = new ReserveRoomForm();
 		reserveRoomForm.setStayingDate(stayingDate);
+		
 		String availableCount = reserveRoomForm.getAvailableRoomCount();
-		if (availableCount == "No room is available") {
-			System.out.println(availableCount);
+		if (availableCount == "No room is available" || availableCount == null) {
+			System.out.println("No room is available");
 			return;
 		}
-		
+		System.out.println(availableCount);
+		System.out.println("Do you confirm this reservation? [Y/N]");
+		char confirm;
+		try {
+			String confirmSt = reader.readLine();
+			char[] c = confirmSt.toCharArray();
+			confirm = c[0];
+		}
+		catch (NumberFormatException e) {
+			confirm = 'A';
+		}
+		if (confirm == 'N') {
+			System.out.println("Reservation canceled");
+			return;
+		}
+		if (confirm != 'Y') {
+			System.out.println("Invalid value: " + confirm + ":(");
+			return;
+		}
 		
 		String reservationNumber = reserveRoomForm.submitReservation();
 
@@ -142,7 +161,7 @@ public class CUI {
 		System.out.println("Check-out has been completed.");
 	}
 
-	public static void main(String[] args) throws Exception {
+	public static void main (String[] args) throws Exception {
 		CUI cui = new CUI();
 		cui.execute();
 	}
