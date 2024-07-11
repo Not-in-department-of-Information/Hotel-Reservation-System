@@ -34,4 +34,8 @@ public class ReserveRoomForm {
 		this.stayingDate = stayingDate;
 	}
 
+	public String getAvailableRoomCount() {
+		return getReserveRoomHandler().getAvailableRoomCount(stayingDate);
+	}
+
 }
