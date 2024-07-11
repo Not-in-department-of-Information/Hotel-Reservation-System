@@ -109,7 +109,7 @@ public class RoomManager {
 		return stayingDate;
 	}
 
-	public String getAvailableRoomManager(Date stayingDate) {
+	public String getAvailableRoomCount(Date stayingDate) {
 		AvailableQtyDao availableQtyDao = getAvailableQtyDao();
 		AvailableQty availableQty = availableQtyDao.getAvailableQty(stayingDate);
 		int availableCount = availableQty.getQty();
