@@ -109,6 +109,23 @@ public class RoomManager {
 		return stayingDate;
 	}
 
+	public String getAvailableRoomManager(Date stayingDate) {
+		AvailableQtyDao availableQtyDao = getAvailableQtyDao();
+		AvailableQty availableQty = availableQtyDao.getAvailableQty(stayingDate);
+		int availableCount = availableQty.getQty();
+		
+		String availableCountMsg;
+		if (availableCount == 0) {
+			availableCountMsg = "No room is available";
+		} else if (availableCount == 1) {
+			availableCountMsg = "1 room remaining";
+		} else {
+			availableCountMsg = availableCount + " rooms remaining";
+		}
+		
+		return availableCountMsg;
+	}
+
 	private AvailableQtyDao getAvailableQtyDao() {
 		return DaoFactory.getInstance().getAvailableQtyDao();
 	}
