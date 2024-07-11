@@ -45,6 +45,10 @@ public class ReserveRoomControl {
 		}
 	}
 
+	public String getAvailableRoomCount(Date stayingDate) {
+		return getRoomManager().getAvailableRoomCount(stayingDate);
+	}
+	
 	private RoomManager getRoomManager() {
 		return ManagerFactory.getInstance().getRoomManager();
 	}
