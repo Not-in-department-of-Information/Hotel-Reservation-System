@@ -46,7 +46,13 @@ public class ReserveRoomControl {
 	}
 
 	public String getAvailableRoomCount(Date stayingDate) {
-		return getRoomManager().getAvailableRoomCount(stayingDate);
+		try {
+			RoomManager roomManager = getRoomManager();
+			return roomManager.getAvailableRoomCount(stayingDate);
+		} catch (RoomException e) {
+			System.out.println("Error: " + e.getMessage());
+            return null;
+		}
 	}
 	
 	private RoomManager getRoomManager() {
