@@ -88,8 +88,16 @@ public class CUI {
 			return;
 		}
 
+		// Check available quantity
 		ReserveRoomForm reserveRoomForm = new ReserveRoomForm();
 		reserveRoomForm.setStayingDate(stayingDate);
+		String availableCount = reserveRoomForm.getAvailableRoomCount();
+		if (availableCount == "No room is available") {
+			System.out.println(availableCount);
+			return;
+		}
+		
+		
 		String reservationNumber = reserveRoomForm.submitReservation();
 
 		System.out.println("Reservation has been completed.");
